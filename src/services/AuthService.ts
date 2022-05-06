@@ -47,7 +47,7 @@ class AuthService {
       return userCred
     } catch (error: any) {
       return {
-        error: error.message,
+        error: error.code,
       }
     }
   }
@@ -61,8 +61,9 @@ class AuthService {
       )
       return userCred
     } catch (error: any) {
+      console.log(error)
       return {
-        error: error.message,
+        error: error.code,
       }
     }
   }

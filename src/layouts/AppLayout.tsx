@@ -12,13 +12,6 @@ export default function AppLayout({ children }: any) {
       </Head>
       <main>
         <Nav />
-        {/* {auth.user || router.pathname != '/' ? (
-        children
-      ) : (
-        <div className={styles.tryconnect}>
-          Try to connect to access content
-        </div>
-      )} */}
         {children}
         <Footer />
       </main>

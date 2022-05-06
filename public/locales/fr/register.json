@@ -1,0 +1,10 @@
+{
+  "welcome": "Bienvenue !",
+  "email": "Adresse e-mail",
+  "password": "Mot de passe",
+  "register": "Créer mon compte",
+  "field": "Ce champ est requis",
+  "enter-email": "Saisissez votre adresse e-mail",
+  "enter-password": "Entrez votre mot de passe",
+  "confirm-password": "Confirmez votre mot de passe"
+}

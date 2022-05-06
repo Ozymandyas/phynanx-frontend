@@ -1,0 +1,347 @@
+.navContainer {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.navbar {
+  background-color: black;
+  color: white;
+  padding: 12px 0 12px 5px;
+  font-weight: bold;
+  display: flex;
+  outline: 2px solid white;
+  box-shadow: 0px 4px 0px black;
+}
+
+.title {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 25px;
+  padding: 3px 9px 2px 9px;
+  border-radius: 12px;
+  border: 2px solid white;
+  transition: all 200ms ease-out;
+}
+
+.title:hover {
+  box-shadow: 0px 2px 3px white, 2px 0px 3px white, -2px 0px 3px white,
+    0px -2px 3px white;
+}
+
+.central {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 40px;
+}
+
+.calculateurs {
+  display: none;
+  font-weight: normal;
+  cursor: pointer;
+  border: 1px solid #484848;
+  border-bottom: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
+  background: #1b1b1b;
+  /* border-radius: 6px; */
+  font-size: 0.8rem;
+  padding: 9px 22px 9px 22px;
+  margin: 0 1em 0 1em;
+  transition: border 200ms ease;
+}
+
+@media screen and (min-width: 600px) {
+  .calculateurs {
+    display: block;
+  }
+}
+
+.calculateurs:hover {
+  background-color: #1d1d1d;
+  border: 1px solid lightgray;
+}
+
+.faAnglesRight {
+  color: lightgray;
+  font-size: 20;
+  padding-left: 15px;
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .faAnglesRight {
+    display: block;
+  }
+}
+
+.fiscaux {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .fiscaux {
+    display: inline;
+  }
+}
+
+/* DOCUMENTATION BLOCK*/
+
+.documentationContainer {
+  margin-left: auto;
+}
+
+.documentation {
+  display: none;
+  font-weight: normal;
+  cursor: pointer;
+  border: 1px solid #484848;
+  border-bottom: 1px solid lightgray;
+  background: #1b1b1b;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  padding: 10px 22px 10px 22px;
+  margin: 0 1em 0 0em;
+  transition: border 200ms ease;
+}
+
+.documentation:hover {
+  background-color: #1d1d1d;
+  border: 1px solid lightgray;
+}
+
+@media screen and (min-width: 992px) {
+  .documentation {
+    display: block;
+  }
+}
+
+.umentation {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .umentation {
+    display: inline;
+  }
+}
+
+.faBook {
+  color: lightgray;
+  font-size: 20;
+  padding-left: 15px;
+}
+
+/* SEARCH BLOCK */
+
+.blockSearch {
+  display: none;
+  align-items: center;
+}
+
+.inputSearch {
+  background: rgb(245, 245, 245);
+  padding: 10px 0 10px 15px;
+  outline: none;
+  width: 150px;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+  border-right: none;
+}
+
+.bgSearch {
+  height: 35px;
+  background: rgb(245, 245, 245);
+  width: 40px;
+  cursor: pointer;
+}
+
+.faSearch {
+  width: 30px;
+  align-items: center;
+  vertical-align: center;
+  padding-top: 10px;
+  padding-left: 5px;
+  color: black;
+  font-size: 25;
+}
+
+@media screen and (min-width: 992px) {
+  .blockSearch {
+    display: flex;
+  }
+}
+
+/**/
+
+/* ACCOUNT BLOCK*/
+
+.blockAccount {
+  font-size: 1.03rem;
+  font-weight: bold;
+  display: none;
+  align-items: center;
+  margin-right: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  .blockAccount {
+    display: flex;
+  }
+}
+
+.connect a {
+  display: none;
+  width: 138px;
+  margin: 0px 10px 0 0;
+  padding: 6px 10px 6px 10px;
+  border: 2px solid white;
+  transition: all 200ms;
+  background-color: white;
+  color: black;
+}
+
+.connect a:hover {
+  background-color: black;
+  color: white;
+}
+
+@media screen and (min-width: 1200px) {
+  .connect a {
+    display: block;
+  }
+}
+
+.register a {
+  text-align: center;
+  display: block;
+  width: 170px;
+  padding: 6px 10px 6px 10px;
+  background-color: black;
+  border: 2px solid white;
+  color: white;
+  transition: all 200ms;
+}
+
+.register a:hover {
+  background-color: white;
+  color: black;
+}
+
+.parameters a {
+  text-align: center;
+  cursor: pointer;
+  display: none;
+  width: 138px;
+  margin: 0px 10px 0 0;
+  padding: 6px 10px 6px 10px;
+  border: 2px solid white;
+  transition: all 200ms;
+  background-color: white;
+  color: black;
+}
+
+.parameters a:hover {
+  background-color: black;
+  color: white;
+}
+
+@media screen and (min-width: 1200px) {
+  .parameters a {
+    display: block;
+  }
+}
+
+.email a {
+  text-align: center;
+  display: block;
+  width: 170px;
+  cursor: pointer;
+  padding: 6px 10px 6px 10px;
+  background-color: black;
+  border: 2px solid white;
+  color: white;
+  transition: all 200ms;
+}
+
+.email a:hover {
+  background-color: white;
+  color: black;
+}
+
+/* .blockConnected {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.blockConnected a {
+  margin: 3px 15px 0 0;
+  border-radius: 8px;
+  padding: 3px 5px 3px 5px;
+  transition: all 200ms;
+}
+
+.blockConnected a:hover {
+  background-color: white;
+  color: black;
+} */
+
+/* ACCOUNT MODAL */
+
+.account {
+  position: absolute;
+  margin-top: 3px;
+  right: 0;
+  padding: 10px;
+  border: 2px solid black;
+  background: white;
+  border-radius: 6px;
+}
+
+.account div {
+  padding: 4px 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.account div a {
+  padding: 4px 5px;
+}
+
+.account div a:hover {
+  background: #000;
+  color: white;
+  border-radius: 6px;
+}
+
+.accountHidden {
+  display: none;
+}
+
+.smallScreenMenu {
+  display: flex;
+  margin-left: auto;
+  margin-right: 10px;
+  display: block;
+  padding-top: 3px;
+  cursor: pointer;
+  /* border: 2px solid yellow; */
+}
+
+.faBars {
+  align-items: center;
+  font-weight: normal;
+  width: 55px;
+  min-height: 33px;
+  /* border: 2px solid red; */
+}
+
+@media screen and (min-width: 600px) {
+  .smallScreenMenu {
+    display: none;
+  }
+}

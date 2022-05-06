@@ -1,0 +1,10 @@
+{
+  "welcome": "Welcome!",
+  "email": "E-mail address",
+  "password": "Password",
+  "connect": "Sign In",
+  "forgotten": "Forgot your password?",
+  "field": "This field is required",
+  "enter-email": "Enter your e-mail address",
+  "enter-password": "Enter your password"
+}
