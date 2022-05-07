@@ -9,6 +9,7 @@ import {
 import AuthService from '../services/AuthService'
 import { ContextInterface } from '../interfaces/ContextInterface'
 import { User } from 'firebase/auth'
+import { useTranslation } from 'next-i18next'
 
 export const authContext = createContext<ContextInterface>({
   user: null,

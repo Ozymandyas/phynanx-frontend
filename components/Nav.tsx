@@ -13,10 +13,20 @@ import {
   faBars,
 } from '@fortawesome/free-solid-svg-icons'
 
-import { useTranslation } from 'next-i18next'
+import en from '../public/locales/en/nav.json'
+import fr from '../public/locales/fr/nav.json'
+import { useRouter } from 'next/router'
 
 const Nav = () => {
-  const { t } = useTranslation('nav')
+  const { locale } = useRouter()
+
+  const t = (key: string) => {
+    if (locale == 'en') {
+      return en[key as keyof typeof en]
+    } else if (locale == 'fr') {
+      return fr[key as keyof typeof fr]
+    }
+  }
 
   const { user, logout } = useAuth()
   const [modal, showModal] = useState(false)
@@ -69,7 +79,7 @@ const Nav = () => {
             onMouseEnter={() => setArrows(true)}
             onMouseLeave={() => setArrows(false)}
           >
-            Calculateurs <span className={styles.fiscaux}>fiscaux</span>
+            {t('computations')}
             <FontAwesomeIcon
               icon={faAnglesRight}
               className={styles.faAnglesRight}
@@ -80,7 +90,7 @@ const Nav = () => {
             <input
               type="text"
               className={styles.inputSearch}
-              placeholder="Recherche..."
+              placeholder={t('search-placeholder')}
             />
             <div className={styles.bgSearch}>
               <FontAwesomeIcon icon={faSearch} className={styles.faSearch} />
@@ -109,8 +119,8 @@ const Nav = () => {
             <div className={styles.parameters}>
               <a>{t('parameters')}</a>
             </div>
-            <div className={styles.email}>
-              <a onClick={() => showModal(!modal)}>{t('account')}</a>
+            <div className={styles.myAccount}>
+              <a onClick={() => showModal(!modal)}>{t('my-account')}</a>
             </div>
           </div>
         ) : (
@@ -122,7 +132,7 @@ const Nav = () => {
             </div>
             <div className={styles.register}>
               <Link href="/register">
-                <a>{t('account')}</a>
+                <a>{t('register')}</a>
               </Link>
             </div>
           </div>
@@ -138,15 +148,21 @@ const Nav = () => {
             showModal(!modal)
           }}
         >
-          <a>Language: FR</a>
+          <div className={styles.email}>
+            {user?.email.split('@')[0].slice(0, 18)}
+          </div>
+          <div className={styles.language}>
+            {t('language')}: {locale?.toUpperCase()}
+          </div>
         </div>
         <div
           onClick={() => {
             showModal(!modal)
           }}
+          className={styles.manage}
         >
           <Link href="/account">
-            <a>Manage your account</a>
+            <a>{t('manage')}</a>
           </Link>
         </div>
         <div
@@ -154,8 +170,9 @@ const Nav = () => {
             logout()
             showModal(!modal)
           }}
+          className={styles.logout}
         >
-          <a>Déconnexion</a>
+          <a>{t('logout')}</a>
         </div>
       </div>
     </nav>

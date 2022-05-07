@@ -1,8 +1,13 @@
 {
   "taxation": "Taxation",
-  "computations": "computations",
-  "search-placeholder": "Search",
+  "computations": "Computations",
+  "search-placeholder": "Search...",
   "documentation": "Documentation",
   "parameters": "Parameters",
-  "my-account": "My account"
+  "my-account": "My account",
+  "connect": "Sign In",
+  "register": "Sign Up",
+  "manage": "Manage my account",
+  "language": "Language",
+  "logout": "Log out"
 }

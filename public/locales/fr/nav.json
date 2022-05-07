@@ -1,8 +1,13 @@
 {
   "taxation": "fiscales",
   "computations": "Calculatrices",
-  "search-placeholder": "Recherche",
+  "search-placeholder": "Recherche...",
   "documentation": "Documentation",
   "parameters": "Paramètres",
-  "my-account": "Mon compte"
+  "my-account": "Mon compte",
+  "connect": "Se connecter",
+  "register": "Créer un compte",
+  "manage": "Gérer mon compte",
+  "language": "Langue",
+  "logout": "Déconnexion"
 }

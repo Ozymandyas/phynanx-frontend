@@ -1,4 +1,4 @@
-import { getApp } from 'firebase/app'
+import { FirebaseError, getApp } from 'firebase/app'
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -7,6 +7,10 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  deleteUser,
+  updateProfile,
+  updateEmail,
+  sendEmailVerification,
 } from 'firebase/auth'
 import { auth } from '../config/firebase'
 
@@ -30,9 +34,11 @@ class AuthService {
       return {
         user: userCred.user,
       }
-    } catch (error: any) {
-      return {
-        error: error.message,
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { error: error.code }
+      } else {
+        return { error }
       }
     }
   }
@@ -45,9 +51,11 @@ class AuthService {
         password
       )
       return userCred
-    } catch (error: any) {
-      return {
-        error: error.code,
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { error: error.code }
+      } else {
+        return { error }
       }
     }
   }
@@ -60,16 +68,66 @@ class AuthService {
         password
       )
       return userCred
-    } catch (error: any) {
-      console.log(error)
-      return {
-        error: error.code,
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { error: error.code }
+      } else {
+        return { error }
       }
     }
   }
 
   async logout() {
     await signOut(this.auth)
+  }
+
+  async verifyEmail() {
+    const user = this.auth.currentUser
+    try {
+      if (user) {
+        sendEmailVerification(user)
+      }
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { error: error.code }
+      } else {
+        return { error }
+      }
+    }
+  }
+
+  async deleteUser() {
+    const user = this.auth.currentUser
+    try {
+      if (user) {
+        await deleteUser(user)
+        return { uid: user.uid }
+      }
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { error: error.code }
+      } else {
+        return { error }
+      }
+    }
+  }
+
+  async changePassword() {}
+
+  async changeEmail(email: string) {
+    const user = this.auth.currentUser
+    try {
+      if (user) {
+        await updateEmail(user, email)
+        return { oldEmail: user.email, newEmail: email }
+      }
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { error: error.code }
+      } else {
+        return { error }
+      }
+    }
   }
 }
 

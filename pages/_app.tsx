@@ -4,7 +4,6 @@ import '../src/config/firebase'
 import { AuthProvider } from '../src/hooks/auth'
 import AppLayout from '../src/layouts/AppLayout'
 import { appWithTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -14,15 +13,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </AppLayout>
     </AuthProvider>
   )
-}
-
-export async function getServerSideProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['nav'])),
-      // Will be passed to the page component as props
-    },
-  }
 }
 
 export default appWithTranslation(MyApp)

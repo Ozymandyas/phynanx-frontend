@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState, useTransition } from 'react'
+import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import useAuth from '../src/hooks/auth'
-import FirestoreService from '../src/services/FirestoreService'
 import styles from '../styles/Connect.module.css'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import { GetServerSideProps } from 'next'
 
 type Inputs = {
   email: string
@@ -91,7 +91,7 @@ const Connect = () => {
   )
 }
 
-export async function getServerSideProps({ locale }) {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['connect'])),
