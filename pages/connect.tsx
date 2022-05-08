@@ -92,11 +92,17 @@ const Connect = () => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['connect'])),
-      // Will be passed to the page component as props
-    },
+  if (locale) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ['connect'])),
+        // Will be passed to the page component as props
+      },
+    }
+  } else {
+    return {
+      props: {},
+    }
   }
 }
 

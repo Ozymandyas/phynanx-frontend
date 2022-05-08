@@ -97,7 +97,7 @@
     background-color: #1d1d1d;
     border: 1px solid lightgray;
   }
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: 768px) {
     display: block;
   }
 }
@@ -170,14 +170,15 @@
 }
 
 .connect {
+  display: none;
   width: 138px;
   height: 36px;
   margin: 0px 10px 0 0;
   border: 2px solid white;
   background-color: white;
   & a {
+    display: block;
     text-align: center;
-    display: none;
     padding: 6px 10px 6px 10px;
     transition: all 200ms;
     color: black;
@@ -186,10 +187,9 @@
       background-color: black;
       color: white;
     }
-
-    @media screen and (min-width: 1200px) {
-      display: block;
-    }
+  }
+  @media screen and (min-width: 1200px) {
+    display: block;
   }
 }
 
@@ -379,6 +379,13 @@
           background-color: white;
           color: black;
         }
+      }
+      & .accountConnectedRightMenu {
+        margin: 9px 0;
+      }
+      & .accountRightMenu {
+        padding-left: 20px;
+        margin: 9px 0;
       }
     }
     & .itemInput {

@@ -102,9 +102,25 @@ const Nav = () => {
             </div>
           </div>
           <div className={styles.item} onClick={() => setRightMenu(false)}>
-            <Link href="/account">
-              <a>{t('my-account')}</a>
-            </Link>
+            {user ? (
+              <div className={styles.accountConnectedRightMenu}>
+                <Link href="/account">
+                  <a>{t('my-account')}</a>
+                </Link>
+                <span style={{ color: 'white' }}> | </span>
+                <a>{t('logout')}</a>
+              </div>
+            ) : (
+              <div className={styles.accountRightMenu}>
+                <span>
+                  <Link href="/connect">{t('connect')}</Link>
+                </span>
+                <span style={{ color: 'white' }}> | </span>
+                <span>
+                  <Link href="/register">{t('register')}</Link>
+                </span>
+              </div>
+            )}
           </div>
           <div className={styles.item} onClick={() => setRightMenu(false)}>
             <Link href="/docs">

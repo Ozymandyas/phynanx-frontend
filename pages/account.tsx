@@ -1,4 +1,6 @@
+import { GetServerSideProps } from 'next'
 import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import AccountInfo from '../components/AccountInfo'
@@ -29,7 +31,7 @@ const Account = () => {
           }`}
           onClick={e => setSelected('computations')}
         >
-          Computations saved
+          {t('computations-saved')}
         </div>
         <div
           className={`${styles.menuOptions} ${
@@ -37,7 +39,7 @@ const Account = () => {
           }`}
           onClick={e => setSelected('developpers')}
         >
-          Developpers
+          {t('dev')}
         </div>
       </div>
       <div className={styles.mainComponent}>
@@ -47,6 +49,21 @@ const Account = () => {
       </div>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+  if (locale) {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ['account'])),
+        // Will be passed to the page component as props
+      },
+    }
+  } else {
+    return {
+      props: {},
+    }
+  }
 }
 
 export default withProtected(Account)

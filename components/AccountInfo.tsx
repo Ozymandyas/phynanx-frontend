@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next'
 import { useForm } from 'react-hook-form'
 import useAuth from '../src/hooks/auth'
 import styles from '../styles/AccountInfo.module.scss'
@@ -5,14 +6,15 @@ import styles from '../styles/AccountInfo.module.scss'
 const AccountInfo = () => {
   const { user, verifyEmail } = useAuth()
   const { register } = useForm()
+  const { t } = useTranslation('account')
 
   return (
     <div className={styles.container}>
       <div className={styles.information}>
-        <span>Informations du compte</span>
-        <div>Adresse e-mail</div>
+        <span>{t('account-info')}</span>
+        <div>{t('email')}</div>
         {user && user.email}
-        <div>Compte vérifié</div>
+        <div>{t('account-verified')}</div>
         {user && user.emailVerified.toString()}
       </div>
       <div className={styles.accountChanges}>
