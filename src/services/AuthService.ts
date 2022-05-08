@@ -11,6 +11,7 @@ import {
   updateProfile,
   updateEmail,
   sendEmailVerification,
+  applyActionCode,
 } from 'firebase/auth'
 import { auth } from '../config/firebase'
 
@@ -78,14 +79,24 @@ class AuthService {
   }
 
   async logout() {
-    await signOut(this.auth)
+    try {
+      await signOut(this.auth)
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { error: error.code }
+      } else {
+        return { error }
+      }
+    }
   }
 
   async verifyEmail() {
     const user = this.auth.currentUser
+    console.log(user)
     try {
       if (user) {
-        sendEmailVerification(user)
+        await sendEmailVerification(user)
+        return { uid: user.uid }
       }
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {

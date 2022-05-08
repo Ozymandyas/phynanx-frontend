@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import useAuth from '../src/hooks/auth'
 import FirestoreService from '../src/services/FirestoreService'
-import styles from '../styles/Register.module.css'
+import styles from '../styles/Register.module.scss'
 
 type Inputs = {
   email: string

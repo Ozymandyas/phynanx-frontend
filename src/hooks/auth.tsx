@@ -19,6 +19,9 @@ export const authContext = createContext<ContextInterface>({
   setUser: null,
   signin: null,
   signup: null,
+  verifyEmail: null,
+  deleteUser: null,
+  changeEmail: null,
 })
 
 export default function useAuth() {
@@ -28,7 +31,7 @@ export default function useAuth() {
 // PropsWithChildren<{}>
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<any>(undefined)
   const [error, setError] = useState<any>(null)
 
   useEffect(() => {
@@ -55,7 +58,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       error: null,
       ...(await AuthService.signin(email, password)),
     }
-    console.log(user)
     let errorMsg = null
     if (error) {
       switch (error) {
@@ -108,14 +110,46 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await AuthService.logout()
     setUser(null)
   }
+
+  const verifyEmail = async () => {
+    const { uid, error } = {
+      uid: null,
+      error: null,
+      ...(await AuthService.verifyEmail()),
+    }
+    return { uid, error }
+  }
+
+  const deleteUser = async () => {
+    const { uid, error } = {
+      uid: null,
+      error: null,
+      ...(await AuthService.deleteUser()),
+    }
+    return { uid, error }
+  }
+
+  const changeEmail = async (email: string) => {
+    const { oldEmail, newEmail, error } = {
+      oldEmail: null,
+      newEmail: null,
+      error: null,
+      ...(await AuthService.changeEmail(email)),
+    }
+    return { oldEmail, newEmail, error }
+  }
+
   const value = {
     user,
     error,
     loginWithGoogle,
-    logout,
     setUser,
     signup,
+    logout,
     signin,
+    verifyEmail,
+    deleteUser,
+    changeEmail,
   }
   return <authContext.Provider value={value}>{children}</authContext.Provider>
 }

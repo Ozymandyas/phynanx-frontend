@@ -1,8 +1,10 @@
 import Nav from '../../components/Nav'
 import Head from 'next/head'
 import Footer from '../../components/Footer'
+import { useRouter } from 'next/router'
 
 export default function AppLayout({ children }: any) {
+  const router = useRouter()
   return (
     <>
       <Head>
@@ -13,7 +15,7 @@ export default function AppLayout({ children }: any) {
       <main>
         <Nav />
         {children}
-        <Footer />
+        {router.pathname != '/account' ? <Footer /> : ''}
       </main>
     </>
   )

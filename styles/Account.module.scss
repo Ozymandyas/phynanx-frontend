@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 0.77fr 4fr;
+  }
+}
+
+.columnLeft {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: rgb(245, 245, 245);
+  border-right: 1px solid #d4d4d4;
+  @media screen and (min-width: 768px) {
+    text-align: left;
+    width: 270px;
+  }
+}
+
+.menuOptions {
+  cursor: pointer;
+  padding: 10px 0 10px 0px;
+  border-bottom: 1px solid #d4d4d4;
+  transition: all 100ms;
+  &:first-child {
+    padding-top: 14px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 20px 0 20px 40px;
+    text-align: left;
+    width: 270px;
+    &:first-child {
+      padding-top: 24px;
+    }
+  }
+}
+
+.menuOptions:hover {
+  background: rgb(226, 226, 226);
+}
+
+.embolden {
+  font-weight: bold;
+}

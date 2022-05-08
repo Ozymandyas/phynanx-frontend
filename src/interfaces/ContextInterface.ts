@@ -6,4 +6,7 @@ export interface ContextInterface {
   setUser: any
   signin: any
   signup: any
+  verifyEmail: any
+  deleteUser: any
+  changeEmail: any
 }

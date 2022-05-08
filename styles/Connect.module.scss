@@ -16,23 +16,14 @@
   border-radius: 12px;
   box-shadow: 1px 0px 3px #817171, 0px 1px 3px #817171, -1px 0px 3px #817171,
     0px -1px 3px #817171;
-}
-
-@media screen and (min-width: 1200px) {
-  .container {
+  @media screen and (min-width: 1200px) {
     min-width: 40vw;
     margin-top: 140px;
   }
-}
-
-@media screen and (min-width: 992px) and (max-width: 1200px) {
-  .container {
+  @media screen and (min-width: 992px) and (max-width: 1200px) {
     min-width: 50vw;
   }
-}
-
-@media screen and (min-width: 600px) and (max-width: 992px) {
-  .container {
+  @media screen and (min-width: 600px) and (max-width: 992px) {
     min-width: 70vw;
   }
 }
@@ -85,11 +76,11 @@
   font-size: 0.75rem;
   cursor: pointer;
   transition: all 200ms ease;
-}
 
-.container input[type='submit']:hover {
-  background: white;
-  color: black;
+  &:hover {
+    background: white;
+    color: black;
+  }
 }
 
 .container label {
@@ -116,8 +107,7 @@
   padding: 0 0 0 14px;
   color: black;
   font-size: 0.65rem;
-}
-
-.forgotten:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }

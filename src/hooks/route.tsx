@@ -1,8 +1,10 @@
 import useAuth from './auth'
+import styles from '../../styles/Route.module.scss'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 export function withPublic(Component: any) {
   return function WithPublic(props: any) {
-    console.log('withPublic')
     const auth = useAuth()
     // const router = useRouter()
     if (auth.user) {
@@ -15,19 +17,36 @@ export function withPublic(Component: any) {
 
 export function withProtected(Component: any) {
   return function WithProtected(props: any) {
-    console.log('withProtected')
-
+    const router = useRouter()
     const auth = useAuth()
-    // const router = useRouter()
-    // console.log(router)
+    const user = auth.user
+    const [data, setData] = useState(undefined)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+      if (user === null) {
+        router.replace('/')
+      }
+    }, [user])
+
     if (!auth.user) {
-      // router.replace('/connect')
       return (
-        <h1
-          style={{ padding: '30px', fontSize: '1.2rem', textAlign: 'center' }}
-        >
-          Merci de vous connecter pour accéder à cette page.
-        </h1>
+        <div className={styles.container}>
+          <div className={styles.spinner}>
+            <div></div>
+            <div></div>
+          </div>
+          <div className={styles.bouncer}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div className={styles.square}>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
       )
     }
     return <Component auth={auth} {...props} />

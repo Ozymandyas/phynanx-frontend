@@ -1,6 +1,6 @@
 .navContainer {
   position: sticky;
-  top: 0;
+  // top: 0;
   z-index: 1;
 }
 
@@ -22,11 +22,10 @@
   border-radius: 12px;
   border: 2px solid white;
   transition: all 200ms ease-out;
-}
-
-.title:hover {
-  box-shadow: 0px 2px 3px white, 2px 0px 3px white, -2px 0px 3px white,
-    0px -2px 3px white;
+  &:hover {
+    box-shadow: 0px 2px 3px white, 2px 0px 3px white, -2px 0px 3px white,
+      0px -2px 3px white;
+  }
 }
 
 .central {
@@ -49,17 +48,13 @@
   padding: 9px 22px 9px 22px;
   margin: 0 1em 0 1em;
   transition: border 200ms ease;
-}
-
-@media screen and (min-width: 600px) {
-  .calculateurs {
+  &:hover {
+    background-color: #1d1d1d;
+    border: 1px solid lightgray;
+  }
+  @media screen and (min-width: 600px) {
     display: block;
   }
-}
-
-.calculateurs:hover {
-  background-color: #1d1d1d;
-  border: 1px solid lightgray;
 }
 
 .faAnglesRight {
@@ -67,20 +62,15 @@
   font-size: 20;
   padding-left: 15px;
   display: none;
-}
-
-@media screen and (min-width: 600px) {
-  .faAnglesRight {
+  transition: all 400ms;
+  @media screen and (min-width: 600px) {
     display: block;
   }
 }
 
 .fiscaux {
   display: none;
-}
-
-@media screen and (min-width: 1200px) {
-  .fiscaux {
+  @media screen and (min-width: 1200px) {
     display: inline;
   }
 }
@@ -103,25 +93,18 @@
   padding: 10px 22px 10px 22px;
   margin: 0 1em 0 0em;
   transition: border 200ms ease;
-}
-
-.documentation:hover {
-  background-color: #1d1d1d;
-  border: 1px solid lightgray;
-}
-
-@media screen and (min-width: 992px) {
-  .documentation {
+  &:hover {
+    background-color: #1d1d1d;
+    border: 1px solid lightgray;
+  }
+  @media screen and (min-width: 992px) {
     display: block;
   }
 }
 
 .umentation {
   display: none;
-}
-
-@media screen and (min-width: 1200px) {
-  .umentation {
+  @media screen and (min-width: 1200px) {
     display: inline;
   }
 }
@@ -130,6 +113,7 @@
   color: lightgray;
   font-size: 20;
   padding-left: 15px;
+  transition: all 200ms;
 }
 
 /* SEARCH BLOCK */
@@ -137,6 +121,9 @@
 .blockSearch {
   display: none;
   align-items: center;
+  @media screen and (min-width: 992px) {
+    display: flex;
+  }
 }
 
 .inputSearch {
@@ -167,12 +154,6 @@
   font-size: 25;
 }
 
-@media screen and (min-width: 992px) {
-  .blockSearch {
-    display: flex;
-  }
-}
-
 /**/
 
 /* ACCOUNT BLOCK*/
@@ -183,92 +164,97 @@
   display: none;
   align-items: center;
   margin-right: 20px;
-}
-
-@media screen and (min-width: 600px) {
-  .blockAccount {
+  @media screen and (min-width: 600px) {
     display: flex;
   }
 }
 
-.connect a {
-  text-align: center;
-  display: none;
+.connect {
   width: 138px;
+  height: 36px;
   margin: 0px 10px 0 0;
-  padding: 6px 10px 6px 10px;
   border: 2px solid white;
-  transition: all 200ms;
   background-color: white;
-  color: black;
+  & a {
+    text-align: center;
+    display: none;
+    padding: 6px 10px 6px 10px;
+    transition: all 200ms;
+    color: black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+
+    @media screen and (min-width: 1200px) {
+      display: block;
+    }
+  }
 }
 
-.connect a:hover {
+.register {
+  width: 170px;
+  height: 36px;
   background-color: black;
-  color: white;
+  border: 2px solid white;
+  & a {
+    text-align: center;
+    display: block;
+
+    padding: 6px 10px 6px 10px;
+
+    color: white;
+    transition: all 200ms;
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }
 }
 
-@media screen and (min-width: 1200px) {
-  .connect a {
+.parameters {
+  display: none;
+  margin: 0px 10px 0 0;
+  width: 138px;
+  height: 36px;
+  background-color: white;
+  border: 2px solid white;
+  & a {
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    padding: 6px 10px 6px 10px;
+    transition: all 200ms;
+    color: black;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+  @media screen and (min-width: 1200px) {
     display: block;
   }
 }
 
-.register a {
-  text-align: center;
-  display: block;
+.myAccount {
+  height: 36px;
   width: 170px;
-  padding: 6px 10px 6px 10px;
   background-color: black;
   border: 2px solid white;
-  color: white;
-  transition: all 200ms;
-}
 
-.register a:hover {
-  background-color: white;
-  color: black;
-}
-
-.parameters a {
-  text-align: center;
-  cursor: pointer;
-  display: none;
-  width: 138px;
-  margin: 0px 10px 0 0;
-  padding: 6px 10px 6px 10px;
-  border: 2px solid white;
-  transition: all 200ms;
-  background-color: white;
-  color: black;
-}
-
-.parameters a:hover {
-  background-color: black;
-  color: white;
-}
-
-@media screen and (min-width: 1200px) {
-  .parameters a {
+  & a {
+    text-align: center;
     display: block;
+    cursor: pointer;
+    padding: 6px 10px 6px 10px;
+    color: white;
+    transition: all 200ms;
+    &:hover {
+      background-color: white;
+      color: black;
+    }
   }
-}
-
-.myAccount a {
-  text-align: center;
-  display: block;
-  width: 170px;
-  cursor: pointer;
-  padding: 6px 10px 6px 10px;
-  background-color: black;
-  border: 2px solid white;
-  color: white;
-  transition: all 200ms;
-}
-
-.myAccount a:hover {
-  background-color: white;
-  color: black;
 }
 
 /* ACCOUNT MODAL */
@@ -281,17 +267,15 @@
   border: 1px solid rgb(75, 75, 75);
   background: white;
   border-radius: 6px;
-}
-
-.account div {
-  /* cursor: pointer; */
-  transition: 200ms;
-}
-
-.account div a:hover {
-  background: #000;
-  color: white;
-  border-radius: 6px;
+  & div {
+    /* cursor: pointer; */
+    transition: 200ms;
+    & a:hover {
+      background: #000;
+      color: white;
+      border-radius: 6px;
+    }
+  }
 }
 
 .accountHidden {
@@ -305,7 +289,9 @@
   display: block;
   padding-top: 3px;
   cursor: pointer;
-  /* border: 2px solid yellow; */
+  @media screen and (min-width: 600px) {
+    display: none;
+  }
 }
 
 .faBars {
@@ -313,13 +299,8 @@
   font-weight: normal;
   width: 55px;
   min-height: 33px;
+  user-select: none;
   /* border: 2px solid red; */
-}
-
-@media screen and (min-width: 600px) {
-  .smallScreenMenu {
-    display: none;
-  }
 }
 
 .email {
@@ -343,20 +324,79 @@
 }
 
 .manage {
-  padding: 4px 5px;
+  padding: 8px 5px 4px 5px;
   font-weight: bold;
-}
-
-.manage a {
-  padding: 4px 5px;
+  & a {
+    padding: 4px 5px;
+  }
 }
 
 .logout {
   padding: 4px 5px;
   font-weight: bold;
   cursor: pointer;
+  & a {
+    padding: 4px 5px;
+  }
 }
 
-.logout a {
-  padding: 4px 5px;
+.skeleton {
+  animation: skeleton-loading 0.6s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.rightMenu {
+  position: absolute;
+  right: 0;
+  background: black;
+  width: 250px;
+  height: 100%;
+  z-index: 1;
+  & .items {
+    margin-top: 80px;
+    padding-left: 30px;
+    & .item {
+      cursor: pointer;
+      padding-bottom: 10px;
+      & a {
+        color: white;
+        padding: 3px 5px;
+
+        border-radius: 6px;
+        &:hover {
+          background-color: white;
+          color: black;
+        }
+      }
+    }
+    & .itemInput {
+      display: flex;
+      color: black;
+      margin-bottom: 20px;
+      & input {
+        outline: none;
+        width: 160px;
+        padding: 10px;
+        border: none;
+      }
+      & .bgSearchRightMenu {
+        padding: 8px 0 0px 8px;
+        background: white;
+        width: 36px;
+        cursor: pointer;
+      }
+    }
+  }
 }

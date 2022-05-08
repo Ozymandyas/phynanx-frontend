@@ -1,4 +1,10 @@
 {
   "mentions": "Legal disclaimer",
-  "contact": "Contact form"
+  "contact": "Contact form",
+  "resources": "Resources",
+  "documentation": "Documentation",
+  "about-phynanx": "About Phynanx",
+  "github": "Github",
+  "twitter": "Twitter",
+  "legal": "Legal"
 }

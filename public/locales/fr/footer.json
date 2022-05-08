@@ -1,4 +1,10 @@
 {
   "mentions": "Mentions légales",
-  "contact": "Formulaire de contact"
+  "contact": "Formulaire de contact",
+  "resources": "Contenus",
+  "documentation": "Documentation",
+  "about-phynanx": "A propos de Phynanx",
+  "github": "Github",
+  "twitter": "Twitter",
+  "legal": "Conditions générales"
 }

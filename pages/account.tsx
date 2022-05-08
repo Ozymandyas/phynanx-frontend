@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import AccountInfo from '../components/AccountInfo'
 import ComputationsSaved from '../components/ComputationsSaved'
 import Developpers from '../components/Developpers'
+import useAuth from '../src/hooks/auth'
 import { withProtected } from '../src/hooks/route'
-import styles from '../styles/Account.module.css'
+import styles from '../styles/Account.module.scss'
 
 const Account = () => {
   const [selected, setSelected] = useState('account')
+  const { t } = useTranslation('account')
 
   return (
     <div className={styles.container}>
@@ -17,11 +21,11 @@ const Account = () => {
           }`}
           onClick={e => setSelected('account')}
         >
-          Account information
+          {t('account-info')}
         </div>
         <div
           className={`${styles.menuOptions} ${
-            selected == 'computations' && styles.embolden
+            selected == 'computations' ? styles.embolden : ''
           }`}
           onClick={e => setSelected('computations')}
         >
@@ -29,7 +33,7 @@ const Account = () => {
         </div>
         <div
           className={`${styles.menuOptions} ${
-            selected == 'developpers' && styles.embolden
+            selected == 'developpers' ? styles.embolden : ''
           }`}
           onClick={e => setSelected('developpers')}
         >
