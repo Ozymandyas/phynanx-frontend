@@ -10,18 +10,38 @@ import AuthService from '../services/AuthService'
 import { ContextInterface } from '../interfaces/ContextInterface'
 import { User } from 'firebase/auth'
 import { useTranslation } from 'next-i18next'
+import { stringify } from 'querystring'
 
 export const authContext = createContext<ContextInterface>({
   user: null,
   error: null,
   loginWithGoogle: null,
-  logout: null,
+  logout: async () => {},
   setUser: null,
-  signin: null,
-  signup: null,
-  verifyEmail: null,
-  deleteUser: null,
-  changeEmail: null,
+  signin: async () => {
+    return {
+      user: null,
+      errorMsg: null,
+    }
+  },
+  signup: async () => {
+    return {
+      user: null,
+      errorMsg: null,
+    }
+  },
+  verifyEmail: async () => {
+    return {
+      uid: null,
+      error: null,
+    }
+  },
+  deleteUser: async () => {
+    return { uid: null, error: null }
+  },
+  changeEmail: async () => {
+    return { oldEmail: null, newEmail: null, error: null }
+  },
 })
 
 export default function useAuth() {

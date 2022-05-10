@@ -54,6 +54,7 @@ const Nav = () => {
   }, [width])
 
   useEffect(() => {
+    // in production it should be < 1
     if (nbRendersBook.current < 2) {
       nbRendersBook.current += 1
     } else {

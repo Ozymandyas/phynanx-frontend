@@ -39,7 +39,7 @@
   display: none;
   font-weight: normal;
   cursor: pointer;
-  border: 1px solid #484848;
+  border: 1px solid var(--button-nav-color);
   border-bottom: 1px solid lightgray;
   /* border-top: 1px solid lightgray; */
   background: #1b1b1b;
@@ -64,7 +64,7 @@
   display: none;
   transition: all 400ms;
   @media screen and (min-width: 600px) {
-    display: block;
+    display: inline;
   }
 }
 
@@ -85,13 +85,13 @@
   display: none;
   font-weight: normal;
   cursor: pointer;
-  border: 1px solid #484848;
+  border: 1px solid var(--button-nav-color);
   border-bottom: 1px solid lightgray;
   background: #1b1b1b;
   border-radius: 4px;
   font-size: 0.8rem;
   padding: 10px 22px 10px 22px;
-  margin: 0 1em 0 0em;
+  margin: 0px 1em 0 0em;
   transition: border 200ms ease;
   &:hover {
     background-color: #1d1d1d;

@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import AccountInfo from '../components/AccountInfo'
@@ -47,6 +48,57 @@ const Account = () => {
           (selected === 'computations' && <ComputationsSaved />) ||
           (selected === 'developpers' && <Developpers />)}
       </div>
+      <footer>
+        <div className={styles.containerFooter}>
+          <div className={styles.category}>
+            <h3 className={styles.categoryTitle}>{t('resources')}</h3>
+            <ul>
+              <li>
+                <Link href="/computations">
+                  <a>{t('computations')}</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/docs">
+                  <a>{t('documentation')}</a>
+                </Link>
+              </li>
+              <li>
+                <a href="">More to come</a>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.category}>
+            <h3 className={styles.categoryTitle}>{t('about-phynanx')}</h3>
+            <ul>
+              <li>
+                <Link href="/contact">
+                  <a className={styles.contact}>{t('contact')}</a>
+                </Link>
+              </li>
+              <li>
+                <a href="">{t('github')}</a>
+              </li>
+              <li>
+                <a href="">{t('twitter')}</a>
+              </li>
+            </ul>
+          </div>
+          <div className={styles.category}>
+            <h3 className={styles.categoryTitle}>{t('legal')}</h3>
+            <ul>
+              <li>
+                <Link href="/legal">
+                  <a className={styles.legal}>{t('mentions')}</a>
+                </Link>
+              </li>
+              <li>
+                <a href="">More to come</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

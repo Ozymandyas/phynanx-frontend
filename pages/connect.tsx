@@ -40,7 +40,6 @@ const Connect = () => {
     }
   }
 
-  // console.log(watch('email'))
   return (
     <div className={styles.background}>
       <div className={styles.container}>
