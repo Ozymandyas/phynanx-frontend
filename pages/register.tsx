@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { GetServerSideProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -31,12 +32,18 @@ const Register = () => {
   const onSubmit: SubmitHandler<Inputs> = async data => {
     try {
       setErrorRegistering('')
-      const { user, errorMsg } = await signup(data.email, data.password1)
+      const locale = router.locale ?? 'en'
+      console.log(locale)
+      const { user, errorMsg } = await signup(
+        data.email,
+        data.password1,
+        locale
+      )
       if (errorMsg) {
         setErrorRegistering(errorMsg)
       } else {
-        await FirestoreService.addToUsers({ email: data.email, api: [] })
         router.push('/')
+        await FirestoreService.addToUsers({ email: data.email, api: '' })
       }
     } catch (err) {
       console.log(err)
@@ -56,6 +63,7 @@ const Register = () => {
           <div className={styles.inputBlock}>
             <label htmlFor="email">{t('email')}</label>
             <input
+              required
               autoFocus={true}
               type="email"
               placeholder={t('enter-email')}
@@ -68,6 +76,7 @@ const Register = () => {
           <div className={styles.inputBlock}>
             <label htmlFor="password1">{t('password')}</label>
             <input
+              required
               type="password"
               placeholder={t('enter-password')}
               {...register('password1', { required: true })}
@@ -79,6 +88,7 @@ const Register = () => {
           <div className={styles.inputBlock}>
             <label htmlFor="password1">{t('password')}</label>
             <input
+              required
               type="password"
               placeholder={t('confirm-password')}
               {...register('password2', { required: true })}
@@ -95,6 +105,9 @@ const Register = () => {
           <div className={styles.inputBlock}>
             <div className={styles.buttonRegister}>
               <input type="submit" value={t('register')} />
+              <Link href="/connect">
+                <a className={styles.connect}>Already have an account?</a>
+              </Link>
             </div>
           </div>
         </form>

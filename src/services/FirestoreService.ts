@@ -1,5 +1,5 @@
 import { getApp } from 'firebase/app'
-import { getIdToken } from 'firebase/auth'
+import { getIdToken, User } from 'firebase/auth'
 import {
   addDoc,
   collection,
@@ -7,9 +7,7 @@ import {
   Firestore,
   getDoc,
   getDocs,
-  getFirestore,
   query,
-  setDoc,
   where,
 } from 'firebase/firestore'
 import { db } from '../config/firebase'
@@ -22,9 +20,9 @@ class FirestoreService {
   constructor(firebaseApp: any) {
     this.db = db
   }
-  async addToUsers(data: any) {
+  async addToUsers({ email, api }: { email: string; api: string }) {
     try {
-      const docRef = await addDoc(collection(this.db, 'users'), data)
+      const docRef = await addDoc(collection(this.db, 'users'), { email, api })
       return docRef
     } catch (error) {
       return error
@@ -44,6 +42,21 @@ class FirestoreService {
       })
       const apiKeys = await response.json()
       return apiKeys.apiKeyUnhashed
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async checkIfApiKey(email: string) {
+    try {
+      const q = query(collection(this.db, 'users'), where('email', '==', email))
+      const querySnapshot = await getDocs(q)
+      const { api } = querySnapshot.docs[0].data()
+      if (api === '') {
+        return false
+      } else {
+        return true
+      }
     } catch (error) {
       console.log(error)
     }

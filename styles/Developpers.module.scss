@@ -1,0 +1,54 @@
+.container {
+  margin: 30px;
+  box-shadow: 0px 2px 3px lightgray;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  padding: 30px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  & p {
+    padding: 0px 30px;
+    margin: 5px;
+  }
+  & h1 {
+    margin-bottom: 40px;
+  }
+  & .outputGeneration {
+    width: 250px;
+    & label {
+      display: block;
+      font-size: 0.8rem;
+      padding-bottom: 2px;
+      // border: 1px solid red;
+    }
+    & input {
+      text-align: left;
+      padding: 10px;
+      width: 250px;
+    }
+  }
+
+  & button {
+    cursor: pointer;
+    padding: 9px 0;
+    width: 250px;
+    background: #000;
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: 3px solid black;
+    border-radius: 7px;
+    font-family: Montserrat;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    transition: all 200ms;
+
+    &:hover {
+      background: white;
+      color: black;
+    }
+  }
+}

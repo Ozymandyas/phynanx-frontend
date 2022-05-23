@@ -9,8 +9,6 @@ import {
 import AuthService from '../services/AuthService'
 import { ContextInterface } from '../interfaces/ContextInterface'
 import { User } from 'firebase/auth'
-import { useTranslation } from 'next-i18next'
-import { stringify } from 'querystring'
 
 export const authContext = createContext<ContextInterface>({
   user: null,
@@ -42,6 +40,9 @@ export const authContext = createContext<ContextInterface>({
   changeEmail: async () => {
     return { oldEmail: null, newEmail: null, error: null }
   },
+  changePassword: async () => {
+    return { error: null }
+  },
 })
 
 export default function useAuth() {
@@ -51,7 +52,7 @@ export default function useAuth() {
 // PropsWithChildren<{}>
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<any>(undefined)
+  const [user, setUser] = useState<User | undefined | null>(undefined)
   const [error, setError] = useState<any>(null)
 
   useEffect(() => {
@@ -72,7 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(error)
   }
 
-  const signin = async (email: string, password: string) => {
+  const signin = async (email: string, password: string, locale: string) => {
     const { user, error } = {
       user: null,
       error: null,
@@ -80,19 +81,40 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     let errorMsg = null
     if (error) {
-      switch (error) {
-        case 'auth/wrong-password':
-          errorMsg = 'Identifiants incorrects'
+      switch (locale) {
+        case 'en':
+          switch (error) {
+            case 'auth/wrong-password':
+              errorMsg = 'Incorrect credentials'
+              break
+            case 'auth/user-not-found':
+              errorMsg = 'Incorrect credentials'
+              break
+            case 'auth/user-disabled':
+              errorMsg =
+                'Your account has been desactivated. Please use contact form.'
+              break
+            case 'auth/operation-not-allowed':
+              errorMsg = 'An unexpected error occurred'
+              break
+          }
           break
-        case 'auth/user-not-found':
-          errorMsg = 'Identifiants incorrects'
-          break
-        case 'auth/user-disabled':
-          errorMsg = 'Votre compte a été désactivé. Contactez un administrateur'
-          break
-        case 'auth/operation-not-allowed':
-          errorMsg = "Une erreur s'est produite"
-          break
+        case 'fr':
+          switch (error) {
+            case 'auth/wrong-password':
+              errorMsg = 'Identifiants incorrects'
+              break
+            case 'auth/user-not-found':
+              errorMsg = 'Identifiants incorrects'
+              break
+            case 'auth/user-disabled':
+              errorMsg =
+                'Votre compte a été désactivé. Contactez un administrateur'
+              break
+            case 'auth/operation-not-allowed':
+              errorMsg = "Une erreur s'est produite"
+              break
+          }
       }
     }
     setUser(user ?? null)
@@ -100,7 +122,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { user, errorMsg }
   }
 
-  const signup = async (email: string, password: string) => {
+  const signup = async (email: string, password: string, locale: string) => {
     const { user, error } = {
       user: null,
       error: null,
@@ -108,18 +130,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     let errorMsg = null
     if (error) {
-      switch (error) {
-        case 'auth/weak-password':
-          errorMsg = 'Le mot de passe doit contenir plus de 6 caractères'
+      switch (locale) {
+        case 'en':
+          switch (error) {
+            case 'auth/weak-password':
+              errorMsg = 'Your password must contain more than 6 characters'
+              break
+            case 'auth/email-already-in-use':
+              errorMsg = 'This e-mail address is already in use'
+              break
+            case 'auth/invalid-email':
+              errorMsg = 'This e-mail address is not valid'
+              break
+            case 'auth/operation-not-allowed':
+              errorMsg = 'An unexpected error occurred!'
+              break
+          }
           break
-        case 'auth/email-already-in-use':
-          errorMsg = 'Cette adresse e-mail est déjà utilisée !'
-          break
-        case 'auth/invalid-email':
-          errorMsg = "Cette adresse e-mail n'est pas valide"
-          break
-        case 'auth/operation-not-allowed':
-          errorMsg = "Une erreur s'est produite !"
+        case 'fr':
+          switch (error) {
+            case 'auth/weak-password':
+              errorMsg = 'Le mot de passe doit contenir plus de 6 caractères'
+              break
+            case 'auth/email-already-in-use':
+              errorMsg = 'Cette adresse e-mail est déjà utilisée !'
+              break
+            case 'auth/invalid-email':
+              errorMsg = "Cette adresse e-mail n'est pas valide"
+              break
+            case 'auth/operation-not-allowed':
+              errorMsg = "Une erreur s'est produite !"
+              break
+          }
           break
       }
     }
@@ -159,6 +201,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { oldEmail, newEmail, error }
   }
 
+  const changePassword = async (password: string) => {
+    const { error } = { ...(await AuthService.changePassword(password)) }
+    return { error }
+  }
+
   const value = {
     user,
     error,
@@ -170,6 +217,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     verifyEmail,
     deleteUser,
     changeEmail,
+    changePassword,
   }
   return <authContext.Provider value={value}>{children}</authContext.Provider>
 }

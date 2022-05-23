@@ -8,14 +8,16 @@ export interface ContextInterface {
   setUser: any
   signin(
     email: string,
-    password: string
+    password: string,
+    locale: string
   ): Promise<{
     user: User | null
     errorMsg: string | null
   }>
   signup: (
     email: string,
-    password: string
+    password: string,
+    locale: string
   ) => Promise<{
     user: User | null
     errorMsg: string | null
@@ -33,4 +35,5 @@ export interface ContextInterface {
     newEmail: string | null
     error: unknown
   }>
+  changePassword(password: string): Promise<{ error: unknown }>
 }

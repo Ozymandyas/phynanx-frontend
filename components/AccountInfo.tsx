@@ -1,5 +1,5 @@
-import { spawn } from 'child_process'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import useAuth from '../src/hooks/auth'
 import styles from '../styles/AccountInfo.module.scss'
@@ -22,7 +22,10 @@ type DeleteInput = {
 }
 
 const AccountInfo = () => {
-  const { user, verifyEmail, deleteUser, changeEmail, signin } = useAuth()
+  const { user, verifyEmail, deleteUser, changeEmail, changePassword, signin } =
+    useAuth()
+  const router = useRouter()
+  const locale = router.locale ?? 'en'
 
   const {
     register: registerEmail,
@@ -50,10 +53,9 @@ const AccountInfo = () => {
   const submitChangeEmail: SubmitHandler<EmailInputs> = async data => {
     try {
       if (data.oldEmail === user.email) {
-        const reloadedUser = await signin(user.email, data.password)
+        const reloadedUser = await signin(user.email, data.password, locale)
         if (reloadedUser.user) {
           const newEmail = await changeEmail(data.newEmail)
-          console.log(newEmail)
           resetEmail()
           return { newEmail: newEmail.newEmail }
         } else {
@@ -69,18 +71,31 @@ const AccountInfo = () => {
 
   const submitChangePassword: SubmitHandler<PasswordInputs> = async data => {
     try {
-      const reloadedUser = await signin(user.email, data.oldPassword)
+      const reloadedUser = await signin(user.email, data.oldPassword, locale)
       if (reloadedUser.user) {
+        await changePassword(data.newPassword1)
         resetPassword()
+      } else {
+        return { error: 'wrong password' }
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const submitDelete: SubmitHandler<DeleteInput> = async data => {
     try {
-      if (data.delete === 'DELETE') {
-        await deleteUser()
-        resetDelete()
+      const reloadedUser = await signin(user.email, data.password, locale)
+      if (reloadedUser.user) {
+        if (data.delete === 'DELETE') {
+          await deleteUser()
+          resetDelete()
+          router.push('/')
+        } else {
+          return { error: 'wrong-delete' }
+        }
+      } else {
+        return { error: 'wrong-password' }
       }
     } catch (error) {
       console.log(error)
@@ -216,7 +231,7 @@ const AccountInfo = () => {
               required
               type="password"
               placeholder={t('enter-password')}
-              {...registerEmail('password', { required: true })}
+              {...registerDelete('password', { required: true })}
               name="password"
               id="current-password"
             />

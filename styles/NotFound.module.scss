@@ -1,0 +1,8 @@
+.notFound {
+  padding: 30px;
+  & a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: blue;
+  }
+}

@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import AccountInfo from '../components/AccountInfo'
 import ComputationsSaved from '../components/ComputationsSaved'
@@ -12,8 +12,28 @@ import { withProtected } from '../src/hooks/route'
 import styles from '../styles/Account.module.scss'
 
 const Account = () => {
-  const [selected, setSelected] = useState('account')
+  const router = useRouter()
+  const [selected, setSelected] = useState(
+    localStorage.getItem('stateAccount') || 'account'
+  )
   const { t } = useTranslation('account')
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('stateAccount', selected)
+    }
+  }, [selected])
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      console.log(`App is changing to ${url}`)
+      localStorage.removeItem('stateAccount')
+    }
+    router.events.on('routeChangeStart', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange)
+    }
+  }, [router])
 
   return (
     <div className={styles.container}>

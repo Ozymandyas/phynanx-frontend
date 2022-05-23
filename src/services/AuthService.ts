@@ -8,10 +8,9 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   deleteUser,
-  updateProfile,
   updateEmail,
   sendEmailVerification,
-  applyActionCode,
+  updatePassword,
 } from 'firebase/auth'
 import { auth } from '../config/firebase'
 
@@ -123,7 +122,20 @@ class AuthService {
     }
   }
 
-  async changePassword() {}
+  async changePassword(password: string) {
+    const user = this.auth.currentUser
+    try {
+      if (user) {
+        await updatePassword(user, password)
+      }
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        return { error: error.code }
+      } else {
+        return { error }
+      }
+    }
+  }
 
   async changeEmail(email: string) {
     const user = this.auth.currentUser
@@ -131,6 +143,8 @@ class AuthService {
       if (user) {
         await updateEmail(user, email)
         return { oldEmail: user.email, newEmail: email }
+      } else {
+        return { error: 'no user' }
       }
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {

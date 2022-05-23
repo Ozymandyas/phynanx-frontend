@@ -5,6 +5,10 @@ import { useRouter } from 'next/router'
 
 export default function AppLayout({ children }: any) {
   const router = useRouter()
+  if (typeof window !== 'undefined' && router.pathname != '/account') {
+    console.log(router.pathname)
+    localStorage.removeItem('stateAccount')
+  }
   return (
     <>
       <Head>

@@ -27,9 +27,10 @@ const Connect = () => {
   const [errorConnecting, setErrorConnecting] = useState<string>('')
 
   const onSubmit: SubmitHandler<Inputs> = async data => {
+    const locale = router.locale ?? 'en'
     try {
       setErrorConnecting('')
-      const { user, errorMsg } = await signin(data.email, data.password)
+      const { user, errorMsg } = await signin(data.email, data.password, locale)
       if (errorMsg) {
         setErrorConnecting(errorMsg)
       } else {
@@ -51,6 +52,7 @@ const Connect = () => {
           <div className={styles.inputBlock}>
             <label htmlFor="email">{t('email')}</label>
             <input
+              required
               autoFocus={true}
               type="email"
               placeholder={t('enter-email')}
@@ -63,6 +65,7 @@ const Connect = () => {
           <div className={styles.inputBlock}>
             <label htmlFor="password">{t('password')}</label>
             <input
+              required
               type="password"
               placeholder={t('enter-password')}
               {...register('password', { required: true })}
