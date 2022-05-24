@@ -15,7 +15,6 @@ type Inputs = {
 
 const Connect = () => {
   const { t } = useTranslation('connect')
-
   const {
     register,
     handleSubmit,

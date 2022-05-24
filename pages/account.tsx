@@ -11,7 +11,8 @@ import useAuth from '../src/hooks/auth'
 import { withProtected } from '../src/hooks/route'
 import styles from '../styles/Account.module.scss'
 
-const Account = () => {
+const Account = (props: any) => {
+  console.log('acoount', props)
   const router = useRouter()
   const [selected, setSelected] = useState(
     localStorage.getItem('stateAccount') || 'account'
@@ -125,14 +126,11 @@ const Account = () => {
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   if (locale) {
-    console.log('LOCALE ACCOUNT.TSX', locale)
-    const props = {
-      ...(await serverSideTranslations(locale, ['account'])),
-      // Will be passed to the page component as props
-    }
-    console.log('PROPS ACCOUNT.TSX', props)
     return {
-      props: props,
+      props: {
+        ...(await serverSideTranslations(locale, ['account'])),
+        // Will be passed to the page component as props
+      },
     }
   } else {
     return {

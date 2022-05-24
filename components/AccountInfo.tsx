@@ -21,12 +21,12 @@ type DeleteInput = {
   password: string
 }
 
-const AccountInfo = () => {
+const AccountInfo = (props: any) => {
   const { user, verifyEmail, deleteUser, changeEmail, changePassword, signin } =
     useAuth()
+  console.log('info', props)
   const router = useRouter()
   const locale = router.locale ?? 'en'
-
   const {
     register: registerEmail,
     handleSubmit: handleSubmitEmail,
@@ -49,7 +49,6 @@ const AccountInfo = () => {
   } = useForm<DeleteInput>()
 
   const { t } = useTranslation('account')
-  console.log(useTranslation('account'))
 
   const submitChangeEmail: SubmitHandler<EmailInputs> = async data => {
     try {
@@ -110,7 +109,6 @@ const AccountInfo = () => {
         <div>
           {t('email')}: {user && user.email}
         </div>
-
         <div>
           {t('account-verified')}: {user && user.emailVerified.toString()}
         </div>
