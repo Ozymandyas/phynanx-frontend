@@ -1,5 +1,5 @@
 import styles from '../styles/Developpers.module.scss'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import useAuth from '../src/hooks/auth'
 import FirestoreService from '../src/services/FirestoreService'
 import { User } from 'firebase/auth'

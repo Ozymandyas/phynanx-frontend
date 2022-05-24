@@ -1,11 +1,9 @@
 import { getApp } from 'firebase/app'
-import { getIdToken, User } from 'firebase/auth'
+import { getIdToken } from 'firebase/auth'
 import {
   addDoc,
   collection,
-  doc,
   Firestore,
-  getDoc,
   getDocs,
   query,
   where,

@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import styles from '../styles/Footer.module.scss'
-import en from '../public/locales/en/footer.json'
-import fr from '../public/locales/fr/footer.json'
 import { useTranslation } from 'next-i18next'
 
 const Footer = () => {

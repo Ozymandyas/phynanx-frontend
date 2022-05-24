@@ -1,7 +1,7 @@
 import useAuth from './auth'
 import styles from '../../styles/Route.module.scss'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 export function withPublic(Component: any) {
   return function WithPublic(props: any) {

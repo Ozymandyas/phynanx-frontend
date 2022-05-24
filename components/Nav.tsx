@@ -12,9 +12,6 @@ import {
   faSearch,
   faBars,
 } from '@fortawesome/free-solid-svg-icons'
-
-import en from '../public/locales/en/nav.json'
-import fr from '../public/locales/fr/nav.json'
 import { useRouter } from 'next/router'
 import { useCurrentWidth } from '../hooks/useCurrentWidth'
 import { useTranslation } from 'next-i18next'
@@ -22,16 +19,6 @@ import { useTranslation } from 'next-i18next'
 const Nav = () => {
   const { locale } = useRouter()
   const { t } = useTranslation('nav')
-
-  // equivalent of t function from useTranslation() which is not working
-  // in this nested layout
-  // const t = (key: string) => {
-  //   if (locale == 'en') {
-  //     return en[key as keyof typeof en]
-  //   } else if (locale == 'fr') {
-  //     return fr[key as keyof typeof fr]
-  //   }
-  // }
 
   const { user, logout } = useAuth()
   // the top modal of navbar showing account information

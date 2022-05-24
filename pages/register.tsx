@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { GetServerSideProps, GetStaticProps } from 'next'
+import { GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
@@ -35,11 +35,7 @@ const Register = () => {
       setErrorRegistering('')
       const locale = router.locale ?? 'en'
       console.log(locale)
-      const { user, errorMsg } = await signup(
-        data.email,
-        data.password1,
-        locale
-      )
+      const { errorMsg } = await signup(data.email, data.password1, locale)
       if (errorMsg) {
         setErrorRegistering(errorMsg)
       } else {
@@ -50,8 +46,6 @@ const Register = () => {
       console.log(err)
     }
   }
-
-  // console.log(watch('email'))
 
   return (
     <div className={styles.background}>
@@ -126,7 +120,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
           'nav',
           'footer',
         ])),
-        // Will be passed to the page component as props
       },
     }
   } else {

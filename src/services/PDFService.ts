@@ -33,13 +33,6 @@ export const createPDFAPIKey = async (apiKey: string) => {
     lineHeight: 24,
     opacity: 1,
   })
-  // page.drawText(`api_key=${apiKey}`, {
-  //   x: 50,
-  //   y: height - 4 * fontSize,
-  //   size: fontSize,
-  //   font: timesRomanFont,
-  //   color: rgb(0, 0.53, 0.71),
-  // })
 
   const pdfBytes = await pdfDoc.save()
   return pdfBytes
