@@ -6,7 +6,8 @@ import useAuth from '../src/hooks/auth'
 import styles from '../styles/Connect.module.scss'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { GetServerSideProps, GetStaticProps } from 'next'
+import { GetStaticProps } from 'next'
+import { withPublic } from '../src/hooks/route'
 
 type Inputs = {
   email: string
@@ -96,7 +97,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale) {
     return {
       props: {
-        ...(await serverSideTranslations(locale, ['connect'])),
+        ...(await serverSideTranslations(locale, ['connect', 'footer', 'nav'])),
         // Will be passed to the page component as props
       },
     }
@@ -107,4 +108,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 }
 
-export default Connect
+export default withPublic(Connect)

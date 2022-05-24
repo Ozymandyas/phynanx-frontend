@@ -12,7 +12,6 @@ import { withProtected } from '../src/hooks/route'
 import styles from '../styles/Account.module.scss'
 
 const Account = (props: any) => {
-  console.log('acoount', props)
   const router = useRouter()
   const [selected, setSelected] = useState(
     localStorage.getItem('stateAccount') || 'account'
@@ -128,7 +127,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale) {
     return {
       props: {
-        ...(await serverSideTranslations(locale, ['account'])),
+        ...(await serverSideTranslations(locale, ['account', 'nav', 'footer'])),
         // Will be passed to the page component as props
       },
     }

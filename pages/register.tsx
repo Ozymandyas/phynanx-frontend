@@ -8,6 +8,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import useAuth from '../src/hooks/auth'
 import FirestoreService from '../src/services/FirestoreService'
 import styles from '../styles/Register.module.scss'
+import { withPublic } from '../src/hooks/route'
 
 type Inputs = {
   email: string
@@ -120,7 +121,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (locale) {
     return {
       props: {
-        ...(await serverSideTranslations(locale, ['register'])),
+        ...(await serverSideTranslations(locale, [
+          'register',
+          'nav',
+          'footer',
+        ])),
         // Will be passed to the page component as props
       },
     }
@@ -131,4 +136,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 }
 
-export default Register
+export default withPublic(Register)

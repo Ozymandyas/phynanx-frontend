@@ -6,12 +6,25 @@ import { useEffect, useState } from 'react'
 export function withPublic(Component: any) {
   return function WithPublic(props: any) {
     const auth = useAuth()
-    // const router = useRouter()
-    if (auth.user) {
-      // router.replace('/')
-      return <h1>Loading</h1>
+    const router = useRouter()
+    const user = auth.user
+    useEffect(() => {
+      if (user) {
+        router.replace('/')
+      }
+    }, [user, router])
+    if (user === null) {
+      return <Component auth={auth} {...props} />
+    } else if (user === undefined) {
+      return (
+        <div className={styles.container}>
+          <div className={styles.spinner}>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      )
     }
-    return <Component auth={auth} {...props} />
   }
 }
 
@@ -20,16 +33,14 @@ export function withProtected(Component: any) {
     const router = useRouter()
     const auth = useAuth()
     const user = auth.user
-    const [data, setData] = useState(undefined)
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
       if (user === null) {
         router.replace('/')
       }
-    }, [user])
+    }, [user, router])
 
-    if (!auth.user) {
+    if (!user) {
       return (
         <div className={styles.container}>
           <div className={styles.spinner}>

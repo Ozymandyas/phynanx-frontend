@@ -2,30 +2,11 @@ import Link from 'next/link'
 import styles from '../styles/Footer.module.scss'
 import en from '../public/locales/en/footer.json'
 import fr from '../public/locales/fr/footer.json'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { i18n } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 
 const Footer = () => {
-  const { locale } = useRouter()
+  const { t } = useTranslation('footer')
 
-  // const [translation, setTranslation] = useState({})
-  // useEffect(() => {
-  //   const bundle = i18n?.getResourceBundle(locale ?? 'en', 'footer')
-  //   console.log(bundle)
-  //   setTranslation(bundle)
-  // }, [locale])
-
-  // const t = (word: string) =>
-  //   word.split('.').reduce((p, c) => (p && p[c]) || null, translation)
-
-  const t = (key: string) => {
-    if (locale == 'en') {
-      return en[key as keyof typeof en]
-    } else if (locale == 'fr') {
-      return fr[key as keyof typeof fr]
-    }
-  }
   return (
     <div className={styles.footer}>
       <div className={styles.container}>
