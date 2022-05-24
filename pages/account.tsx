@@ -125,11 +125,14 @@ const Account = () => {
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   if (locale) {
+    console.log('LOCALE ACCOUNT.TSX', locale)
+    const props = {
+      ...(await serverSideTranslations(locale, ['account'])),
+      // Will be passed to the page component as props
+    }
+    console.log('PROPS ACCOUNT.TSX', props)
     return {
-      props: {
-        ...(await serverSideTranslations(locale, ['account'])),
-        // Will be passed to the page component as props
-      },
+      props: props,
     }
   } else {
     return {

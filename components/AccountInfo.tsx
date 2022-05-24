@@ -49,6 +49,7 @@ const AccountInfo = () => {
   } = useForm<DeleteInput>()
 
   const { t } = useTranslation('account')
+  console.log(useTranslation('account'))
 
   const submitChangeEmail: SubmitHandler<EmailInputs> = async data => {
     try {
