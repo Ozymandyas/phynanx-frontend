@@ -36,16 +36,6 @@ export function withProtected(Component: any) {
             <div></div>
             <div></div>
           </div>
-          {/* <div className={styles.bouncer}>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div className={styles.square}>
-            <div></div>
-            <div></div>
-          </div> */}
         </div>
       )
     }
