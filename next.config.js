@@ -4,6 +4,8 @@ const { i18n } = require('./next-i18next.config')
 const nextConfig = {
   i18n,
   reactStrictMode: true,
+
+  /** it was to use top level await for pdf-lib */
   // webpack: config => {
   //   // this will override the experiments
   //   config.experiments = { topLevelAwait: true }
