@@ -33,11 +33,13 @@ class FirestoreService {
       const headers = new Headers()
       headers.append('Content-Type', 'application/json')
       headers.append('Authorization', `Bearer ${token}`)
+      console.log('BEGIN AUTHSERVICE')
       const response = await fetch(`${NEXT_PUBLIC_API_BASE_URL}generator`, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({ email }),
       })
+      console.log('END AUTHSERVICE')
       const apiKeys = await response.json()
       return apiKeys.apiKeyUnhashed
     } catch (error) {

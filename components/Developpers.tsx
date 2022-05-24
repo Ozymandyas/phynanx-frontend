@@ -18,7 +18,9 @@ const Developpers = () => {
     setCopied(false)
     try {
       if (user && user.email) {
+        console.log('BEGIN LOADING')
         const apiKeyUnhashed = await FirestoreService.addApiKey(user.email)
+        console.log('END LOADING')
         setApiKey(apiKeyUnhashed)
         setHasApiKey(true)
       }

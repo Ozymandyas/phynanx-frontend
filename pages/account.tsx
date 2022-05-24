@@ -26,7 +26,6 @@ const Account = (props: any) => {
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      console.log(`App is changing to ${url}`)
       localStorage.removeItem('stateAccount')
     }
     router.events.on('routeChangeStart', handleRouteChange)

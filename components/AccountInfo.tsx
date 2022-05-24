@@ -24,7 +24,6 @@ type DeleteInput = {
 const AccountInfo = (props: any) => {
   const { user, verifyEmail, deleteUser, changeEmail, changePassword, signin } =
     useAuth()
-  console.log('info', props)
   const router = useRouter()
   const locale = router.locale ?? 'en'
   const {
