@@ -8,6 +8,7 @@ import {
 import AuthService from '../services/AuthService'
 import { ContextInterface } from '../interfaces/ContextInterface'
 import { User } from 'firebase/auth'
+import Cookies from 'js-cookie'
 
 export const authContext = createContext<ContextInterface>({
   user: null,

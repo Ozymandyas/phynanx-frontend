@@ -61,6 +61,17 @@ class FirestoreService {
       console.log(error)
     }
   }
+
+  async checkUsage(email: string) {
+    try {
+      const q = query(collection(this.db, 'users'), where('email', '==', email))
+      const querySnapshot = await getDocs(q)
+      const { apiUsage } = querySnapshot.docs[0].data()
+      return apiUsage
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export default new FirestoreService(getApp())

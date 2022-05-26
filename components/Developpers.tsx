@@ -11,6 +11,7 @@ const Developpers = () => {
   const [apiKey, setApiKey] = useState('')
   const [hasApiKey, setHasApiKey] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [usage, setUsage] = useState(0)
   const inputTextRef = useRef<HTMLInputElement>(null)
 
   const generateAPIKey = async () => {
@@ -33,6 +34,8 @@ const Developpers = () => {
     if (user && user.email) {
       const hasApiKey = await FirestoreService.checkIfApiKey(user.email)
       setHasApiKey(hasApiKey === undefined ? false : hasApiKey)
+      const usage = await FirestoreService.checkUsage(user.email)
+      setUsage(usage)
     } else {
       setHasApiKey(false)
     }
@@ -63,14 +66,20 @@ const Developpers = () => {
   return (
     <>
       {hasApiKey && (
-        <div className={styles.container}>
-          <p>You already have an API Key created.</p>
-          <p>
-            If your API Key has been leaked or if you have lost it, you can
-            generate a new API Key but it will delete the former one and you
-            will not be able to access it anymore.
-          </p>
-        </div>
+        <>
+          <div className={styles.container}>
+            <p className={styles.bold}>You already have an API Key created.</p>
+            <p>
+              If your API Key has been leaked or if you have lost it, you can
+              generate a new API Key but it will delete the former one and you
+              will not be able to access it anymore.
+            </p>
+          </div>
+          <div className={styles.container}>
+            <h1>API Usage</h1>
+            <p>{usage} calls</p>
+          </div>
+        </>
       )}
       <div className={styles.container}>
         <h1>API Key Generation</h1>

@@ -98,7 +98,7 @@ const Nav = () => {
                   <a>{t('my-account')}</a>
                 </Link>
                 <span style={{ color: 'white' }}> | </span>
-                <a>{t('logout')}</a>
+                <a onClick={logout}>{t('logout')}</a>
               </div>
             ) : (
               <div className={styles.accountRightMenu}>
