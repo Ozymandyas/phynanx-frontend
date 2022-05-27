@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRef } from 'react'
 
 const calculParts = () => {
-  const computeParts = async e => {
+  const computeParts = async (e: any) => {
     e.preventDefault()
     Cookies.set('user', 'public', { sameSite: 'strict' })
     const res = await fetch('http://localhost:8080/api/v1/income-splitting', {
