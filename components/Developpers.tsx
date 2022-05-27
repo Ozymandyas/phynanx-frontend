@@ -11,12 +11,14 @@ const Developpers = () => {
   const [apiKey, setApiKey] = useState('')
   const [hasApiKey, setHasApiKey] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [saved, setSaved] = useState(false)
   const [usage, setUsage] = useState(0)
   const inputTextRef = useRef<HTMLInputElement>(null)
 
   const generateAPIKey = async () => {
     setApiKey('Loading...')
     setCopied(false)
+    setSaved(false)
     try {
       if (user && user.email) {
         console.log('BEGIN LOADING')
@@ -35,7 +37,7 @@ const Developpers = () => {
       const hasApiKey = await FirestoreService.checkIfApiKey(user.email)
       setHasApiKey(hasApiKey === undefined ? false : hasApiKey)
       const usage = await FirestoreService.checkUsage(user.email)
-      setUsage(usage)
+      setUsage(usage ?? 0)
     } else {
       setHasApiKey(false)
     }
@@ -60,6 +62,7 @@ const Developpers = () => {
       element.download = 'phynanx_api_key.pdf'
       document.body.appendChild(element)
       element.click()
+      setSaved(true)
     }
   }
 
@@ -77,7 +80,7 @@ const Developpers = () => {
           </div>
           <div className={styles.container}>
             <h1>API Usage</h1>
-            <p>{usage} calls</p>
+            <p>{`${usage} call${usage > 1 ? 's' : ''}`} </p>
           </div>
         </>
       )}
@@ -101,7 +104,9 @@ const Developpers = () => {
             <button onClick={copyToClipboard}>
               {copied ? 'Key copied!' : 'Copy to clipboard'}
             </button>
-            <button onClick={downloadPDF}>Save as PDF</button>
+            <button onClick={downloadPDF}>
+              {saved ? 'PDF saved!' : 'Save as PDF'}
+            </button>
           </>
         )}
       </div>

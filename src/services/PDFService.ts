@@ -13,7 +13,6 @@ export const createPDFAPIKey = async (apiKey: string) => {
   const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
 
   page.setFont(helveticaFont)
-  console.log(width, height)
 
   page.moveTo(120, 760)
   page.drawText('Your Phynanx API Key', { size: 36 })
