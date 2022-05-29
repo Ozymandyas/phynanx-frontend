@@ -1,7 +1,6 @@
 .navContainer {
   user-select: none;
   position: sticky;
-  // top: 0;
   z-index: 1;
 }
 
@@ -16,16 +15,20 @@
 }
 
 .title {
-  cursor: pointer;
   font-size: 1.5rem;
   margin-left: 25px;
   padding: 3px 9px 2px 9px;
   border-radius: 12px;
   border: 2px solid white;
   transition: all 200ms ease-out;
+  user-select: none;
+  outline: none;
   &:hover {
     box-shadow: 0px 2px 3px white, 2px 0px 3px white, -2px 0px 3px white,
       0px -2px 3px white;
+  }
+  @media screen and (min-width: 768px) {
+    // cursor: pointer;
   }
 }
 
@@ -39,12 +42,9 @@
 .calculateurs {
   display: none;
   font-weight: normal;
-  cursor: pointer;
   border: 1px solid var(--button-nav-color);
   border-bottom: 1px solid lightgray;
-  /* border-top: 1px solid lightgray; */
   background: #1b1b1b;
-  /* border-radius: 6px; */
   font-size: 0.8rem;
   padding: 9px 22px 9px 22px;
   margin: 0 1em 0 1em;
@@ -55,6 +55,7 @@
   }
   @media screen and (min-width: 600px) {
     display: block;
+    cursor: pointer;
   }
 }
 
@@ -85,7 +86,6 @@
 .documentation {
   display: none;
   font-weight: normal;
-  cursor: pointer;
   border: 1px solid var(--button-nav-color);
   border-bottom: 1px solid lightgray;
   background: #1b1b1b;
@@ -100,6 +100,7 @@
   }
   @media screen and (min-width: 768px) {
     display: block;
+    cursor: pointer;
   }
 }
 
@@ -289,7 +290,6 @@
   margin-right: 10px;
   display: block;
   padding-top: 3px;
-  cursor: pointer;
   @media screen and (min-width: 600px) {
     display: none;
   }
@@ -301,7 +301,7 @@
   width: 55px;
   min-height: 33px;
   user-select: none;
-  /* border: 2px solid red; */
+  outline: none;
 }
 
 .email {

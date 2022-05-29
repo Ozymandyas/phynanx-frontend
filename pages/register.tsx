@@ -34,7 +34,6 @@ const Register = () => {
     try {
       setErrorRegistering('')
       const locale = router.locale ?? 'en'
-      console.log(locale)
       const { errorMsg } = await signup(data.email, data.password1, locale)
       if (errorMsg) {
         setErrorRegistering(errorMsg)
