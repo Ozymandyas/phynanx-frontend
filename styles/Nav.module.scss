@@ -15,23 +15,26 @@
 }
 
 .title {
+  margin: 4px 0 0 0;
   font-size: 1.5rem;
   margin-left: 25px;
-  padding: 3px 9px 2px 9px;
-  border-radius: 12px;
-  border: 2px solid white;
   transition: all 200ms ease-out;
-  user-select: none;
-  outline: none;
-  &:hover {
-    box-shadow: 0px 2px 3px white, 2px 0px 3px white, -2px 0px 3px white,
-      0px -2px 3px white;
-  }
-  @media screen and (min-width: 768px) {
-    // cursor: pointer;
+  & a {
+    cursor: default;
+    padding: 3px 9px 3px 9px;
+    border-radius: 12px;
+    border: 2px solid white;
+    user-select: none;
+    outline: none;
+    @media screen and (min-width: 768px) {
+      cursor: pointer;
+    }
+    &:hover {
+      box-shadow: 0px 2px 3px white, 2px 0px 3px white, -2px 0px 3px white,
+        0px -2px 3px white;
+    }
   }
 }
-
 .central {
   display: flex;
   align-items: center;
@@ -85,13 +88,14 @@
 
 .documentation {
   display: none;
+  cursor: pointer;
   font-weight: normal;
   border: 1px solid var(--button-nav-color);
   border-bottom: 1px solid lightgray;
   background: #1b1b1b;
   border-radius: 4px;
   font-size: 0.8rem;
-  padding: 10px 22px 10px 22px;
+  padding: 9px 22px 9px 22px;
   margin: 0px 1em 0 0em;
   transition: border 200ms ease;
   &:hover {
@@ -100,7 +104,6 @@
   }
   @media screen and (min-width: 768px) {
     display: block;
-    cursor: pointer;
   }
 }
 
@@ -270,7 +273,6 @@
   background: white;
   border-radius: 6px;
   & div {
-    /* cursor: pointer; */
     transition: 200ms;
     & a:hover {
       background: #000;
@@ -289,7 +291,7 @@
   margin-left: auto;
   margin-right: 10px;
   display: block;
-  padding-top: 3px;
+  padding-top: 2px;
   @media screen and (min-width: 600px) {
     display: none;
   }
@@ -299,7 +301,7 @@
   align-items: center;
   font-weight: normal;
   width: 55px;
-  min-height: 33px;
+  min-height: 32px;
   user-select: none;
   outline: none;
 }
@@ -369,12 +371,11 @@
     margin-top: 80px;
     padding-left: 30px;
     & .item {
-      cursor: pointer;
       padding-bottom: 10px;
       & a {
         color: white;
         padding: 3px 5px;
-
+        cursor: default;
         border-radius: 6px;
         &:hover {
           background-color: white;
@@ -403,7 +404,6 @@
         padding: 8px 0 0px 8px;
         background: white;
         width: 36px;
-        cursor: pointer;
       }
     }
   }
